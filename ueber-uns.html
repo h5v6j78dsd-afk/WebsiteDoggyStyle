@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Über uns – DoggyStyle Hundepension</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Oswald:wght@400;600&display=swap');
+
+* { box-sizing:border-box; }
+
+body {
+  background:#050509;
+  color:#f2f2f2;
+  font-family:'Montserrat',system-ui,-apple-system,BlinkMacSystemFont,sans-serif;
+  margin:0;
+}
+header {
+  position:sticky;
+  top:0;
+  z-index:40;
+  backdrop-filter:blur(18px);
+  background:linear-gradient(to bottom,rgba(5,5,9,0.98),rgba(5,5,9,0.92),rgba(5,5,9,0.0));
+  border-bottom:1px solid rgba(255,255,255,0.08);
+  transition:transform .6s ease-in-out, opacity .6s ease-in-out;
+}
+body.scrolled-down header {
+  transform:translateY(-120%);
+  opacity:0;
+}
+
+.header-inner {
+  max-width:1120px;
+  margin:0 auto;
+  padding:12px 20px 18px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:8px;
+  position:relative;
+}
+.header-inner::before {
+  content:'';
+  position:absolute;
+  top:38%;
+  left:50%;
+  width:300px;
+  height:300px;
+  transform:translate(-50%,-50%);
+  background:radial-gradient(circle at top,#ff7a2f33,#000000 65%);
+  filter:blur(20px);
+  opacity:0.9;
+  z-index:-2;
+}
+.logo-shell {
+  padding:10px;
+  border-radius:30px;
+  background:linear-gradient(135deg,rgba(255,122,47,0.25),rgba(10,6,18,0.9));
+  border:1px solid rgba(255,207,95,0.85);
+  box-shadow:0 24px 60px rgba(0,0,0,0.95);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  max-width:340px;
+  width:100%;
+  transform-origin:center;
+  transition:transform .35s ease-out, box-shadow .35s ease-out, background .35s ease-out, border-color .35s ease-out;
+}
+.header-inner:hover .logo-shell {
+  transform:translateY(-2px) scale(1.01);
+  box-shadow:0 32px 80px rgba(0,0,0,1);
+  background:linear-gradient(135deg,rgba(255,122,47,0.35),rgba(10,6,18,0.95));
+  border-color:rgba(255,207,95,1);
+}
+.logo-shell img {
+  width:100%;
+  display:block;
+  border-radius:22px;
+}
+.brand-title {
+  font-family:'Oswald',system-ui,sans-serif;
+  font-size:15px;
+  letter-spacing:0.22em;
+  text-transform:uppercase;
+  font-weight:600;
+  margin-top:6px;
+}
+.brand-sub {
+  font-size:11px;
+  color:#ffcf5f;
+  letter-spacing:0.2em;
+  text-transform:uppercase;
+}
+.logo-shell,
+.brand-title,
+.brand-sub {
+  transition:transform .45s ease-out, opacity .45s ease-out;
+  transition-delay:.12s;
+}
+body.scrolled-down .logo-shell,
+body.scrolled-down .brand-title,
+body.scrolled-down .brand-sub {
+  transform:translateY(-26px);
+  opacity:0;
+}
+
+.burger{
+  z-index:9999;
+  position:absolute;
+  right:22px;
+  top:18px;
+  width:28px;
+  height:22px;
+  cursor:pointer;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+.burger span {
+  height:3px;
+  border-radius:999px;
+  background:#f2f2f2;
+  transition:transform .2s ease-out, opacity .2s ease-out;
+}
+.burger.open span:nth-child(1) { transform:translateY(9px) rotate(45deg); }
+.burger.open span:nth-child(2) { opacity:0; }
+.burger.open span:nth-child(3) { transform:translateY(-9px) rotate(-45deg); }
+
+.wrapper {
+  max-width:1120px;
+  margin:0 auto;
+  padding:26px 20px 60px;
+}
+h1,h2,h3 { font-family:'Oswald',system-ui,sans-serif; }
+h1 {
+  font-size:30px;
+  margin:0 0 10px;
+  letter-spacing:0.06em;
+  text-transform:uppercase;
+}
+h2 {
+  color:#ff7a2f;
+  text-transform:uppercase;
+  letter-spacing:0.16em;
+  font-size:16px;
+  margin:30px 0 10px;
+}
+h3 { color:#f2f2f2; margin-top:18px; margin-bottom:6px; }
+p {
+  margin:6px 0;
+  color:#d0d0dd;
+  line-height:1.5;
+}
+.card {
+  background:#181824;
+  border-radius:12px;
+  border:1px solid #27273a;
+  padding:18px 18px 16px;
+  margin:10px 0 18px;
+  box-shadow:0 16px 36px rgba(0,0,0,0.8);
+}
+.card.highlight {
+  border-color:#ff7a2f;
+  box-shadow:0 0 32px rgba(255,122,47,0.35);
+}
+ul { margin:6px 0 6px 20px; color:#c8c8d5; }
+
+footer {
+  border-top:1px solid rgba(255,255,255,0.08);
+  padding:16px 20px 24px;
+  font-size:11px;
+  color:#a0a0b5;
+  background:radial-gradient(circle at bottom,#181824 0,#050509 52%,#000 100%);
+}
+.footer-inner {
+  max-width:1120px;
+  margin:0 auto;
+  display:flex;
+  justify-content:space-between;
+  gap:16px;
+  flex-wrap:wrap;
+}
+.footer-links {
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+}
+.footer-links a {
+  color:#a0a0b5;
+  text-decoration:none;
+  text-transform:uppercase;
+  letter-spacing:0.14em;
+}
+
+/* Side Menu */
+.side-menu-overlay {
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.7);
+  backdrop-filter:blur(8px);
+  opacity:0;
+  visibility:hidden;
+  transition:opacity .2s ease-out, visibility .2s ease-out;
+  z-index:60;
+}
+.side-menu-overlay.open { opacity:1; visibility:visible; }
+.side-menu {
+  position:fixed;
+  top:0;
+  right:-260px;
+  width:240px;
+  height:100vh;
+  background:#101018;
+  border-left:1px solid rgba(255,255,255,0.12);
+  box-shadow:-16px 0 40px rgba(0,0,0,0.85);
+  padding:70px 20px 20px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  z-index:61;
+  transition:right .2s ease-out;
+}
+.side-menu.open { right:0; }
+.side-menu a {
+  color:#d0d0dd;
+  text-decoration:none;
+  font-size:13px;
+  letter-spacing:0.16em;
+  text-transform:uppercase;
+  padding:6px 0;
+  border-bottom:1px solid rgba(255,255,255,0.06);
+}
+.side-menu a.active { color:#ffffff; }
+.side-menu a:last-child { border-bottom:none; }
+
+/* Reveal */
+.reveal {
+  opacity:0;
+  transform:translateY(24px);
+  transition:opacity .6s ease-out, transform .6s ease-out;
+}
+.reveal.reveal-visible {
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* Bilder / Karten */
+.portrait-card { margin:14px auto 6px; text-align:center; }
+.portrait-card img {
+  width:100%;
+  max-width:420px;
+  height:auto;
+  display:block;
+  margin:0 auto;
+  border-radius:14px;
+  box-shadow:0 8px 22px rgba(0,0,0,0.85);
+  cursor:pointer;
+}
+.portrait-card figcaption { font-size:0.85rem; margin-top:6px; opacity:0.9; }
+
+.pickup-card { margin-top:14px; }
+.pickup-card img {
+  width:100%;
+  aspect-ratio:16/9;
+  object-fit:cover;
+  border-radius:14px;
+  box-shadow:0 8px 22px rgba(0,0,0,0.85);
+  display:block;
+  cursor:pointer;
+}
+.pickup-card figcaption { font-size:0.85rem; margin-top:6px; opacity:0.9; }
+
+.signature-line { margin-top:10px; font-size:0.95rem; font-style:italic; opacity:0.9; }
+
+.gallery {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:10px;
+  margin-top:10px;
+}
+.gallery img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:10px;
+  border:1px solid #27273a;
+  box-shadow:0 8px 22px rgba(0,0,0,0.75);
+  cursor:pointer;
+}
+
+/* Pfotenbereich unten */
+.paw-section {
+  margin-top:34px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+}
+.paw-row { display:flex; align-items:center; gap:12px; }
+.paw-hint {
+  font-family:'Montserrat',system-ui,sans-serif;
+  font-size:13px;
+  color:#c8c8d5;
+  letter-spacing:0.06em;
+}
+.paw-button {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:84px;
+  height:84px;
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,0.60);
+  cursor:pointer;
+  background:
+    url('images/pfote_button.png') center/64% no-repeat,
+    radial-gradient(circle at 30% 18%,
+      rgba(255,255,255,0.98),
+      rgba(240,240,243,0.98) 34%,
+      rgba(210,210,216,1) 72%,
+      rgba(88,88,96,1) 100%);
+  transform:translateY(-6px);
+  box-shadow:
+    0 34px 60px rgba(0,0,0,1),
+    0 0 0 2px rgba(255,255,255,0.22),
+    inset 0 7px 10px rgba(255,255,255,0.90),
+    inset 0 -10px 18px rgba(0,0,0,0.60);
+}
+.paw-button:active {
+  transform:translateY(0) scale(0.965);
+  box-shadow:
+    0 14px 26px rgba(0,0,0,0.95),
+    0 0 0 2px rgba(255,255,255,0.15),
+    inset 0 4px 10px rgba(0,0,0,0.75);
+}
+.paw-label {
+  margin-top:10px;
+  font-family:'Oswald',system-ui,sans-serif;
+  font-size:16px;
+  letter-spacing:0.22em;
+  text-transform:uppercase;
+  color:#ffcf5f;
+}
+
+/* Lightbox */
+.lightbox-overlay {
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.92);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:200;
+}
+.lightbox-overlay.open { display:flex; }
+.lightbox-overlay img {
+  max-width:90%;
+  max-height:90%;
+  border-radius:16px;
+  box-shadow:0 24px 60px rgba(0,0,0,0.95);
+}
+.lightbox-close {
+  position:absolute;
+  top:18px;
+  right:22px;
+  font-size:30px;
+  color:#ffffff;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+@media (max-width:780px){
+  .header-inner{padding-bottom:12px;}
+}
+
+a { color:#ffcf5f; text-decoration:none; }
+a:hover { text-decoration:underline; }
+</style>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <div class="burger" id="burger"><span></span><span></span><span></span></div>
+    <div class="logo-shell">
+      <img src="images/embedded_1.png" style="width:100%;border-radius:22px;" alt="DoggyStyle Hundepension Logo">
+    </div>
+    <div class="brand-title">DoggyStyle Hundepension</div>
+    <div class="brand-sub">Urlaub auf dem Wauernhof</div>
+  </div>
+</header>
+
+<div class="side-menu-overlay" id="sideOverlay"></div>
+
+<!-- ✅ NAV exakt wie Index (nur active geändert) -->
+<nav class="side-menu" id="sideMenu">
+  <a href="index.html">Start</a>
+  <a href="angebot.html">Angebot</a>
+  <a href="abenteuer.html">Abenteuer</a>
+  <a href="ueber-uns.html" class="active">Über uns</a>
+  <a href="preise.html">Preise</a>
+  <a href="ablauf-faq.html">Ablauf &amp; FAQ</a>
+  <a href="kontakt.html">Kontakt</a>
+  <a href="anfahrt.html">Anfahrt</a>
+  <a href="aktuelles.html">Aktuelles</a>
+  <a href="datenschutz.html">Datenschutz</a>
+  <a href="impressum.html">Impressum</a>
+</nav>
+
+<div class="wrapper">
+
+  <h1>Über uns</h1>
+
+  <div class="card reveal">
+    <h3>Wir &amp; das Hof-Rudel</h3>
+    <p>Bei uns auf dem Hof lebt man nicht „trotz“ der Tiere, sondern wegen ihnen. Hunde, Alpakas, frische Luft und manchmal Matsch bis über die Knöchel.</p>
+    <p>Hunde sollen hier zur Ruhe kommen, klar geführt werden und sich sicher fühlen.</p>
+  </div>
+
+  <div class="card reveal">
+    <h3>Wir – Raphael &amp; Anschi</h3>
+    <p>
+      Wir sind Raphael und Anschi – zwei Menschen mit Herz für Hunde, mit klarer Haltung,
+      Spaß an guter Arbeit und einem Hof, der lebt. Bei uns ist jeder Hund ein Gast
+      auf Augenhöhe – mit Respekt, Geduld und einer großen Portion Liebe.
+    </p>
+
+    <figure class="portrait-card">
+      <img src="images/raphael_anschi.jpg" alt="Raphael und Anschi lächeln gemeinsam auf dem Hof" class="lightbox-trigger">
+      <figcaption>Beweisfoto: Es gibt uns auch ohne Hundehaare, wenn auch nur kurz😉</figcaption>
+    </figure>
+
+    <p class="signature-line"></p>
+  </div>
+
+  <div class="card reveal">
+    <h3>Mitten im Hofleben</h3>
+    <p>
+      Unsere Hunde sind Teil unseres Weges – auch unterwegs. Ob auf dem Hof oder im Pickup –
+      sie sind immer da, wo wir sind.
+    </p>
+
+    <figure class="pickup-card">
+      <img src="images/hund_pickup.jpg" alt="Hund liegt entspannt im Pickup" class="lightbox-trigger">
+      <figcaption>Mit uns unterwegs – ganz selbstverständlich Teil vom Wauernhof.</figcaption>
+    </figure>
+  </div>
+
+  <div class="card reveal">
+    <h3>Taps – der gut gelaunte Senior</h3>
+    <p>
+      Immer dabei, immer mitten im Leben. Ein echter Hofhund mit Herz – und ziemlich guter
+      Nase, besonders wenn es ums Futter geht.
+    </p>
+
+    <figure class="portrait-card">
+      <img src="images/taps_portrait.jpg" alt="Taps schaut freundlich in die Kamera" class="lightbox-trigger">
+      <figcaption>Unser lieber Taps – seit vielen Jahren überall dabei.</figcaption>
+    </figure>
+  </div>
+
+  <div class="card reveal">
+    <h3>Vertrauen entsteht durch Nähe</h3>
+    <p>
+      Manchmal braucht es nur eine ruhige Minute und ein stilles Miteinander.
+      Genau so entsteht Vertrauen – echte Beziehung zwischen Mensch und Hund.
+    </p>
+
+    <figure class="portrait-card">
+      <img src="images/dicke_anschi_liebe.jpg" alt="Innige Nähe zwischen Hund und Mensch, Stirn an Stirn" class="lightbox-trigger">
+      <figcaption>Jeden Tag neu – Nähe, die verbindet.</figcaption>
+    </figure>
+  </div>
+
+  <div class="card reveal">
+    <h3>Dicke, Taps &amp; Co.</h3>
+    <ul>
+      <li><strong>Dicke</strong> – Cane Corso Hündin, sensibel, wachsam, außen hart, innen weicher als gedacht.</li>
+      <li><strong>Taps</strong> – älterer Labrador, verfressen, gemütlich und grundsätzlich überall dabei.</li>
+    </ul>
+    <p>Dazu kommt unser Alpakahof – keine Kulisse, sondern Mitbewohner mit Charakter.</p>
+  </div>
+
+  <div class="card reveal">
+    <h3>Warum der Name „DoggyStyle“?</h3>
+    <p>Ja, der Name sorgt für Grinsen. 😉 Für uns heißt das aber vor allem: Der Hund verbringt seine Zeit im <strong>Doggy Style</strong> – hundgerecht, strukturiert und mit Raum, einfach Hund zu sein.</p>
+  </div>
+
+  <h2>Das Hof-Rudel in Bildern</h2>
+  <div class="card reveal">
+    <p>Dicke, Taps und das Umfeld, in dem wir mit den Hunden leben.</p>
+    <div class="gallery">
+      <img src="images/embedded_2.jpg" alt="Hundebild" class="reveal lightbox-trigger">
+      <img src="images/embedded_4.jpg" alt="Hundebild" class="reveal lightbox-trigger">
+      <img src="images/embedded_10.jpg" alt="Hundebild" class="reveal lightbox-trigger">
+    </div>
+  </div>
+
+  <!-- Pfotenbereich (unten) -->
+  <div class="paw-section">
+    <div class="paw-row">
+      <div class="paw-hint">nach oben hier ↑</div>
+      <button class="paw-button" id="pawButton" aria-label="Nach oben und Menü öffnen"></button>
+    </div>
+    <div class="paw-label">GIB PFOTE❗️😉</div>
+  </div>
+
+</div>
+
+<!-- Lightbox -->
+<div class="lightbox-overlay" id="lightbox">
+  <span class="lightbox-close" id="lightboxClose">&times;</span>
+  <img id="lightboxImg" src="" alt="">
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div>© <span id="year"></span> DoggyStyle Hundepension – Urlaub auf dem Wauernhof.</div>
+    <div class="footer-links">
+      <a href="index.html">Start</a>
+      <a href="anfahrt.html">Anfahrt</a>
+      <a href="kontakt.html">Kontakt</a>
+      <a href="datenschutz.html">Datenschutz</a>
+      <a href="impressum.html">Impressum</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const burger = document.getElementById('burger');
+  const sideMenu = document.getElementById('sideMenu');
+  const overlay = document.getElementById('sideOverlay');
+
+  function toggleMenu() {
+    burger.classList.toggle('open');
+    sideMenu.classList.toggle('open');
+    overlay.classList.toggle('open');
+  }
+
+  burger.addEventListener('click', toggleMenu);
+  overlay.addEventListener('click', toggleMenu);
+  sideMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', toggleMenu));
+
+  document.querySelectorAll('#year').forEach(e => e.textContent = new Date().getFullYear());
+
+  const onScrollHeader = () => {
+    const scrolled = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    if (scrolled > 40) document.body.classList.add('scrolled-down');
+    else document.body.classList.remove('scrolled-down');
+  };
+  window.addEventListener('scroll', onScrollHeader);
+  onScrollHeader();
+
+  // Reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('reveal-visible');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    revealEls.forEach(el => observer.observe(el));
+  } else {
+    revealEls.forEach(el => el.classList.add('reveal-visible'));
+  }
+
+  // Lightbox
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+  const lightboxClose = document.getElementById('lightboxClose');
+
+  document.querySelectorAll('.lightbox-trigger').forEach(img => {
+    img.addEventListener('click', () => {
+      lightboxImg.src = img.src;
+      lightboxImg.alt = img.alt || '';
+      lightbox.classList.add('open');
+    });
+  });
+
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    lightboxImg.src = '';
+  }
+  lightboxClose.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+
+  // Pfotenbutton: hoch + Menü öffnen (ohne FEIN auf dieser Seite)
+  const pawButton = document.getElementById('pawButton');
+  pawButton.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setTimeout(() => {
+      if (!sideMenu.classList.contains('open')) toggleMenu();
+    }, 650);
+  });
+</script>
+</body>
+</html>
